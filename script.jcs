@@ -1,0 +1,78 @@
+// ============================================
+// SCRIPT DA INCUBADORA DE PALMAS
+// ============================================
+
+// --- MODAL PRÉ-INCUBAÇÃO ---
+const preIncubacaoBtn = document.getElementById('pre-incubacao-btn');
+const preIncubacaoModal = document.getElementById('pre-incubacao-modal');
+const modalClose = document.getElementById('modal-close');
+
+if (preIncubacaoBtn && preIncubacaoModal) {
+    preIncubacaoBtn.addEventListener('click', function() {
+        preIncubacaoModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Impede scroll
+    });
+}
+
+if (modalClose && preIncubacaoModal) {
+    modalClose.addEventListener('click', function() {
+        preIncubacaoModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+}
+
+// --- MODAL INCUBAÇÃO ---
+const incubacaoBtn = document.getElementById('incubacao-btn');
+const incubacaoModal = document.getElementById('incubacao-modal');
+const modalCloseIncubacao = document.getElementById('modal-close-incubacao');
+
+if (incubacaoBtn && incubacaoModal) {
+    incubacaoBtn.addEventListener('click', function() {
+        incubacaoModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+if (modalCloseIncubacao && incubacaoModal) {
+    modalCloseIncubacao.addEventListener('click', function() {
+        incubacaoModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+}
+
+// --- FECHAR MODAL CLICANDO FORA ---
+// Fecha o modal se clicar fora da caixa
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+        event.target.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// --- FECHAR MODAL COM TECLA ESC ---
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal-overlay.active');
+        modals.forEach(function(modal) {
+            modal.classList.remove('active');
+        });
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// ============================================
+// SCROLL SUAVE PARA NAVEGAÇÃO
+// ============================================
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
