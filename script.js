@@ -1,64 +1,80 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(event) {
-        const nome = document.getElementById('nome').value;
-        const email = document.getElementById('email').value;
-        const mensagem = document.getElementById('mensagem').value;
+// ============================================
+// SCRIPT DA INCUBADORA DE PALMAS
+// ============================================
 
-        if (!nome || !email || !mensagem) {
-            alert('Por favor, preencha todos os campos.');
-            event.preventDefault();
-        } else {
-            alert('Mensagem enviada com sucesso!');
+// Aguarda o DOM carregar completamente
+document.addEventListener('DOMContentLoaded', function() {
+
+    // --- MODAL PRÉ-INCUBAÇÃO ---
+    const preIncubacaoBtn = document.getElementById('pre-incubacao-btn');
+    const preIncubacaoModal = document.getElementById('pre-incubacao-modal');
+    const modalClose = document.getElementById('modal-close');
+
+    if (preIncubacaoBtn && preIncubacaoModal) {
+        preIncubacaoBtn.addEventListener('click', function() {
+            preIncubacaoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (modalClose && preIncubacaoModal) {
+        modalClose.addEventListener('click', function() {
+            preIncubacaoModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // --- MODAL INCUBAÇÃO ---
+    const incubacaoBtn = document.getElementById('incubacao-btn');
+    const incubacaoModal = document.getElementById('incubacao-modal');
+    const modalCloseIncubacao = document.getElementById('modal-close-incubacao');
+
+    if (incubacaoBtn && incubacaoModal) {
+        incubacaoBtn.addEventListener('click', function() {
+            incubacaoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (modalCloseIncubacao && incubacaoModal) {
+        modalCloseIncubacao.addEventListener('click', function() {
+            incubacaoModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // --- FECHAR MODAL CLICANDO FORA ---
+    window.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal-overlay')) {
+            event.target.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
     });
 
-    // Smooth scrolling for nav links
-    const navLinks = document.querySelectorAll('.nav-flutuante a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+    // --- FECHAR MODAL COM TECLA ESC ---
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const modals = document.querySelectorAll('.modal-overlay.active');
+            modals.forEach(function(modal) {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // --- SCROLL SUAVE PARA NAVEGAÇÃO ---
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
 
-    const modal = document.getElementById('pre-incubacao-modal');
-    const openModalButton = document.getElementById('pre-incubacao-btn');
-    const closeModalButton = document.getElementById('modal-close');
-
-    openModalButton.addEventListener('click', function() {
-        modal.classList.add('active');
-    });
-
-    closeModalButton.addEventListener('click', function() {
-        modal.classList.remove('active');
-    });
-
-    modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
-
-    const incubacaoModal = document.getElementById('incubacao-modal');
-    const openIncubacaoButton = document.getElementById('incubacao-btn');
-    const closeIncubacaoButton = document.getElementById('modal-close-incubacao');
-
-    openIncubacaoButton.addEventListener('click', function() {
-        incubacaoModal.classList.add('active');
-    });
-
-    closeIncubacaoButton.addEventListener('click', function() {
-        incubacaoModal.classList.remove('active');
-    });
-
-    incubacaoModal.addEventListener('click', function(event) {
-        if (event.target === incubacaoModal) {
-            incubacaoModal.classList.remove('active');
-        }
-    });
 });
