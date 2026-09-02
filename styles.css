@@ -554,15 +554,20 @@ button:hover { background-color: #1e3a0f; }
 
 .incubadora-image-container {
     margin-top: 2rem;
-    text-align: center;
+    display: flex;           /* Transforma em container flexível */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente (caso tenha texto ao lado) */
+    width: 100%;
 }
 
 .incubadora-image {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%;      /* Impede de estourar a tela no celular */
+    width: 100%;          /* Ocupa a largura disponível até o limite abaixo */
+    max-width: 800px;     /* LIMITE MÁXIMO NO COMPUTADOR (ajuste este valor se quiser maior ou menor) */
+    height: auto;         /* Mantém a proporção */
     border-radius: 10px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    max-height: 400px;
+    display: block;       /* Garante que se comporte como bloco controlado */
 }
 
 /* =========================================
