@@ -704,6 +704,15 @@ footer {
     transition: all 0.3s;
 }
 
+footer {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens desçam para baixo em telas menores */
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+
 .hero-section {
     padding: 40px 20px; /* Espaçamento em cima/baixo e laterais */
     text-align: left; /* ou center, dependendo da preferência */
@@ -715,6 +724,20 @@ footer {
     display: block;
 }
 
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza na horizontal */
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 .modal-link:hover {
     color: #1e3a0f;
     border-bottom-color: #1e3a0f;
