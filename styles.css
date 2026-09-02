@@ -21,6 +21,15 @@ body {
     justify-content: space-between;
 }
 
+/* Exemplo para a nav */
+nav {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha se faltar espaço */
+    justify-content: center;
+    gap: 15px; /* Espaço entre os links */
+    padding: 10px;
+}
+
 .logo-nav {
     height: 50px;
     width: auto;
