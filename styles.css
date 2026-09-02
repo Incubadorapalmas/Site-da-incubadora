@@ -704,6 +704,17 @@ footer {
     transition: all 0.3s;
 }
 
+.hero-section {
+    padding: 40px 20px; /* Espaçamento em cima/baixo e laterais */
+    text-align: left; /* ou center, dependendo da preferência */
+}
+
+.hero-title-background { /* O texto "Incubadora de Palmas" cortado */
+    position: static; /* Remova o absolute se possível */
+    margin-bottom: 10px;
+    display: block;
+}
+
 .modal-link:hover {
     color: #1e3a0f;
     border-bottom-color: #1e3a0f;
