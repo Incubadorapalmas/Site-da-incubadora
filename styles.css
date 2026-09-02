@@ -21,7 +21,6 @@ body {
     justify-content: space-between;
 }
 
-/* Exemplo para a nav */
 nav {
     display: flex;
     flex-wrap: wrap; /* Permite quebrar linha se faltar espaço */
