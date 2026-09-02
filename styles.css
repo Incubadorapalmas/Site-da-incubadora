@@ -258,9 +258,11 @@ section {
 
 .news-image {
     width: 100%;
-    height: auto;           /* ← Altura automática */
-    object-fit: contain;    /* ← Mostra a imagem inteira */
+    height: auto;
+    max-height: 400px;      /* ← Altura máxima */
+    object-fit: contain;
     border-radius: 8px;
+    background-color: #f0f0f0; /* ← Cor de fundo se sobrar espaço */
 }
 
 .editais-container {
